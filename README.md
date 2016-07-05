@@ -14,7 +14,22 @@ Get or update **Goma** with:
 
 ## goma.Object ##
 
-Anything that is persitable can be modeled with `goma.Object`. It can be **view**, **model** or **both**.
+Anything that is persitable can be modeled with a Goma object. It can be your app's **view**, **model** or **both**.
+
+A Goma object can be defined by embedding [goma.Object](object.go) into your struct. It should also implement [goma.DBOBject](object.go) interface to make it persistable.
+
+```go
+type Person struct {
+  *goma.Object
+   Name string `json:"name"`
+   Age int `json:"age"`
+}
+
+// Implement goma.DBObject interface's Key() method
+func (p Person) Key() string {
+  return "sampleApp.Person"
+}
+```
 
 # Examples
 
