@@ -9,9 +9,6 @@ Get or update **Goma** with:
 
 ` go get -u github.com/hemantasapkota/goma`
 
-# Features
-  * Write and test your application logic in GO
-
 # Concepts & Usage
 
 
