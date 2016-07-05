@@ -12,9 +12,10 @@ type DB interface {
 	Delete(key string) error
 }
 
+func SetLevelDB(db *leveldb.GomaDB) {
+	leveldb.DB = db
+}
+
 func GetDB() DB {
-	if leveldb.DB == nil {
-		leveldb.InitDB(".")
-	}
 	return leveldb.DB
 }
