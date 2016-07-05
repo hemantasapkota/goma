@@ -12,11 +12,11 @@ Get or update **Goma** with:
 
 # Concepts & Usage
 
-## goma.Object ##
+## goma.Object - Definition & Construction ##
 
 Anything that is persitable can be modeled with a Goma object. It can be your app's **view**, **model** or **both**.
 
-A Goma object can be defined by embedding [goma.Object](object.go) into your struct. It should also implement [goma.DBOBject](object.go) interface to make it persistable.
+A complete goma object should embed [goma.Object](object.go) and implement the [goma.DBOBject](object.go) interface.
 
 ```go
 type Person struct {
@@ -28,6 +28,33 @@ type Person struct {
 // Implement goma.DBObject interface's Key() method
 func (p Person) Key() string {
   return "sampleApp.Person"
+}
+```
+
+## goma.Object - Saving ##
+
+```go
+
+person := &Peron{
+ Name: "Jon Panda",
+ Age: 20,
+}
+
+err := person.Save(person)
+if err != nil {
+ // do something
+}
+
+```
+
+## goma.Object - Restoring ##
+
+```go
+person := &Person{}
+err := person.Restore(person)
+
+if err != nil {
+ // do something
 }
 ```
 
