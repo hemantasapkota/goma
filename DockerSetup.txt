@@ -1,0 +1,9 @@
+Install from https://docs.docker.com/engine/installation/mac/
+
+docker-machine list
+docker-machine start <machine_nam>
+ 
+# To see if docker is running correctly try
+
+docker run hello-world
+
