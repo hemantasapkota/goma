@@ -11,4 +11,4 @@ A simple framework for building native mobile applications with GO
 
 # Examples
 
-* Fitness App ( WIP )
+See https://github.com/hemantasapkota/goma-examples
