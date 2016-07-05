@@ -1,7 +1,7 @@
 package gomadb
 
 import (
-	"goma/gomadb/leveldb"
+	"github.com/hemantasapkota/goma/gomadb/leveldb"
 )
 
 type DB interface {
