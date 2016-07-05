@@ -58,6 +58,6 @@ if err != nil {
 }
 ```
 
-# Examples
+# Examples ( WIP )
 
 See https://github.com/hemantasapkota/goma-examples
