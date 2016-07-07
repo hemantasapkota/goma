@@ -1,6 +1,8 @@
 package goma
 
 import (
+	gomadb "github.com/hemantasapkota/goma/gomadb"
+	ldb "github.com/hemantasapkota/goma/gomadb/leveldb"
 	"testing"
 )
 
@@ -16,6 +18,12 @@ func (o TestObject) Key() string {
 
 func TestObjects(t *testing.T) {
 	NewLogger()
+
+	db, err := ldb.InitDB(".")
+	if err != nil {
+		t.Log("Could not setup database")
+	}
+	gomadb.SetLevelDB(db)
 
 	w := TestObject{
 		Name: "Hemanta",
