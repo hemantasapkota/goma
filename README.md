@@ -16,7 +16,7 @@ Get or update **Goma** with:
 
 Anything that is persitable can be modeled with a Goma object. It can be your app's **view**, **model** or **both**.
 
-A complete goma object should embed [goma.Object](object.go) and implement the [goma.DBOBject](object.go) interface.
+A complete goma object should embed [goma.Object](object.go) and implement the [goma.DBObject](object.go) interface.
 
 ```go
 type Person struct {
@@ -31,7 +31,7 @@ func (p Person) Key() string {
 }
 ```
 
-## goma.Object - Saving ##
+## goma.Object - Saving to the database ##
 
 ```go
 
@@ -47,7 +47,13 @@ if err != nil {
 
 ```
 
-## goma.Object - Restoring ##
+The object is serialized to JSON and stored in DB.
+
+```
+{"name":"Jon Panda","age":20}
+```
+
+## goma.Object - Restoring from the database ##
 
 ```go
 person := &Person{}
@@ -56,6 +62,26 @@ err := person.Restore(person)
 if err != nil {
  // do something
 }
+```
+
+## goma.AppCache - In-memory cache for your objects ##
+
+Saving and restoring objects are expensive functions. As such they must be minimized. Goma comes with an in-memory cache which can be used for storing objects throughout the session of the app.
+
+### Put to cache ###
+```go
+person := &Person{
+ Name: "Panda panda",
+ Age: 35,
+}
+goma.GetAppCache().Put(person)
+```
+
+### Get from cache ###
+```go
+p := goma.GetAppCache().Get(&Person{}).(*Person)
+
+// Do something with p
 ```
 
 # Examples ( WIP )
