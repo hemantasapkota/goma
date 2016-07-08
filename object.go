@@ -19,6 +19,7 @@ func (obj *Object) Save(dbObj DBObject) error {
 	if err != nil {
 		return err
 	}
+	log.Println(fmt.Sprintf("Saving: %s : %s", dbObj.Key(), string(data)))
 	return gomadb.GetDB().PutBytes(dbObj.Key(), data)
 }
 
