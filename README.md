@@ -66,7 +66,7 @@ if err != nil {
 
 ## goma.AppCache - In-memory cache for your objects ##
 
-Saving and restoring objects are expensive functions. As such they must be minimized. Goma comes with an in-memory cache which can be used for storing objects throughout the session of the app.
+Saving and restoring objects are expensive functions, so they must be minimized. Goma comes with an in-memory cache which can be used for storing objects throughout the session of the app.
 
 ### Put to cache ###
 ```go
