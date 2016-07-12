@@ -84,6 +84,31 @@ p := goma.GetAppCache().Get(&Person{}).(*Person)
 // Do something with p
 ```
 
+The **Get** method expects an empty container for the type you're querying for. Here's an another example:
+
+```go
+type ContainerItem struct {
+    Id int `json:"id"`
+}
+
+type Container struct {
+    *goma.Object
+    Children []ContainerItem `json:"children"`
+}
+
+func (c Container) Key() string {
+    return "sampleApp.Container"
+}
+
+func EmptyConatiner() *Container {
+    return &Container{
+        Childred: make([]ContainerItem, 0),
+    }
+}
+
+container := goma.GetAppCache().Get(EmptyContainer()).(*Container)
+```
+
 # Examples ( WIP )
 
 See https://github.com/hemantasapkota/goma-examples
