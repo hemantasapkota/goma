@@ -107,6 +107,9 @@ func EmptyConatiner() *Container {
 }
 
 container := goma.GetAppCache().Get(EmptyContainer()).(*Container)
+
+// If the object does not exist in the cache, the method returns the object returned by EmptyContainer()
+
 ```
 
 # Examples ( WIP )
