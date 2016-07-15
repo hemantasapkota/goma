@@ -84,7 +84,9 @@ p := goma.GetAppCache().Get(&Person{}).(*Person)
 // Do something with p
 ```
 
-The **Get** method expects an empty container for the type you're querying for. If the queried object does not exists, **Get** returns the same empty type that was passed in. Since **Get** is likely to be called from multiple places in the codebase, this design helps avoid making nil error checks ( `if obj != nil` ) on the returned object. If there's a better design for this, feel free to submit a pull request.
+The **Get** method expects an empty struct for the type you're querying for. This struct should also implement [goma.DBObject](object.go) interface.  If the queried object does not exists, **Get** returns the same empty type that was passed in. 
+
+Since **Get** is likely to be called from multiple places in the codebase, this design helps avoid making nil error checks ( `if obj != nil` ) on the returned object. If there's a better design for this, feel free to submit a pull request.
 
 Here's an another example:
 
