@@ -116,7 +116,7 @@ container := goma.GetAppCache().Get(EmptyContainer()).(*Container)
 
 ```
 
-# Examples ( WIP )
+# Examples
 
 * [Meal Tracker](https://github.com/hemantasapkota/goma-examples/tree/master/fitness) - A simple meal tracker that I use personally
 
