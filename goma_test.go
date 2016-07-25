@@ -17,7 +17,7 @@ func (o TestObject) Key() string {
 }
 
 func TestObjects(t *testing.T) {
-	NewLogger()
+	NewLogger(LoggerConfig{Debug: true})
 
 	db, err := ldb.InitDB(".")
 	if err != nil {

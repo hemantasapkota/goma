@@ -19,13 +19,13 @@ func (obj *Object) Save(dbObj DBObject) error {
 	if err != nil {
 		return err
 	}
-	log.Println(fmt.Sprintf("Saving: %s : %s", dbObj.Key(), string(data)))
+	Log(fmt.Sprintf("Saving: %s : %s", dbObj.Key(), string(data)))
 	return gomadb.GetDB().PutBytes(dbObj.Key(), data)
 }
 
 func (obj *Object) Restore(dbObj DBObject) error {
 	data, err := gomadb.GetDB().GetBytes(dbObj.Key())
-	log.Println(fmt.Sprintf("Restoring %s : %s", dbObj.Key(), string(data)))
+	Log(fmt.Sprintf("Restoring %s : %s", dbObj.Key(), string(data)))
 	if err != nil {
 		return err
 	}
