@@ -121,3 +121,10 @@ container := goma.GetAppCache().Get(EmptyContainer()).(*Container)
 * [Meal Tracker](https://github.com/hemantasapkota/goma-examples/tree/master/fitness) - A simple meal tracker that I use personally
 
 See https://github.com/hemantasapkota/goma-examples
+
+# Production Apps
+
+Goma is being used in production for the following apps.
+
+* **OpenLearning IOS** - https://itunes.apple.com/us/app/openlearning/id981790180?ls=1&mt=8
+* **OpenLearning Android** - https://play.google.com/store/apps/details?id=openlearning.com.openlearning
