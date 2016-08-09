@@ -1,4 +1,5 @@
 # Goma - ごま #
+> Build native mobile apps faster by writing your application logic in GO
 
 With Goma, you can write your mobile app's business logic in GO and reuse them across platforms like IOS and Android. It comes with an embedded database that allows you to save/restore your application's objects.
 
