@@ -5,6 +5,12 @@ With Goma, you can write your mobile app's business logic in GO and reuse them a
 
 Goma utilizes [gomobile](https://godoc.org/golang.org/x/mobile/cmd/gomobile) to generate platform specific libraries for your apps.
 
+## Requirements
+
+- At least Go 1.5.3 or above
+- Xcode
+- Android Studio or Eclipse
+
 # Installation
 
 Get or update **Goma** with:
@@ -133,26 +139,14 @@ Goma is being used in production for the following apps.
 * **OpenLearning IOS** - https://itunes.apple.com/us/app/openlearning/id981790180?ls=1&mt=8
 * **OpenLearning Android** - https://play.google.com/store/apps/details?id=openlearning.com.openlearning
 
-# License
+## Contribute
 
-The MIT License (MIT)
+We would love for you to contribute to **Goma**, check the ``LICENSE`` file for more info.
 
-Copyright (c) 2016 Hemanta Sapkota
+## Meta
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Hemanta Sapkota – [@ozhemanta](https://twitter.com/ozhemanta) – laex.pearl@gmail.com
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Distributed under the MIT license. See ``LICENSE`` for more information.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+[https://github.com/hemantasapkota](https://github.com/hemantasapkota/)
