@@ -1,7 +1,7 @@
 # Goma - ごま #
 > Build native mobile apps faster by writing your application logic in GO
 
-With Goma, you can write your mobile app's business logic in GO and reuse them across platforms like IOS and Android. It comes with an embedded database that allows you to save/restore your application's objects.
+With Goma, you can write your mobile app's business logic in GO and reuse them across platforms like IOS and Android. It comes with an embedded database that allows you to save/restore application's objects.
 
 Goma utilizes [gomobile](https://godoc.org/golang.org/x/mobile/cmd/gomobile) to generate platform specific libraries for your apps.
 
@@ -122,6 +122,16 @@ container := goma.GetAppCache().Get(EmptyContainer()).(*Container)
 // If the object does not exist in the cache, the method returns the object returned by EmptyContainer()
 
 ```
+
+## App Structure ( TODO )
+
+The following structure is reccomended:
+
+## Marshaling - Return values from Goma ##
+
+[gomobile](https://godoc.org/golang.org/x/mobile/cmd/gomobile) has some restrictions as to what types you can return. They are primitives ( ```int, int64, float float64, string, and bool``` ) and ( byte array ) ```[]byte```. 
+
+Goma leverages Go's excellent JSON support. Complex types like structs, arrays, and maps can be easily marshalled into JSON.
 
 # Wiki
 * [Interfacing with Android and IOS](https://github.com/hemantasapkota/goma/wiki/Interfacing-with-Android-and-IOS)
