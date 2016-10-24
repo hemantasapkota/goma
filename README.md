@@ -1,8 +1,15 @@
 # Goma - ごま #
+> Build native mobile apps faster by writing your application logic in GO
 
-With Goma, you can write your mobile app's business logic in GO and reuse them across platforms like IOS and Android. It comes with an embedded database that allows you to save/restore your application's objects.
+With Goma, you can write your mobile app's business logic in GO and reuse them across platforms like IOS and Android. It comes with an embedded database that allows you to save/restore application's objects.
 
 Goma utilizes [gomobile](https://godoc.org/golang.org/x/mobile/cmd/gomobile) to generate platform specific libraries for your apps.
+
+## Requirements
+
+- At least Go 1.5.3 or above
+- Xcode
+- Android Studio or Eclipse
 
 # Installation
 
@@ -116,6 +123,16 @@ container := goma.GetAppCache().Get(EmptyContainer()).(*Container)
 
 ```
 
+## App Structure ( TODO )
+
+The following structure is reccomended:
+
+## Marshaling - Return values from Goma ##
+
+[gomobile](https://godoc.org/golang.org/x/mobile/cmd/gomobile) has some restrictions as to what types you can return. They are primitives ( ```int, int64, float float64, string, and bool``` ) and ( byte array ) ```[]byte```. 
+
+Goma leverages Go's excellent JSON support. Complex types like structs, arrays, and maps can be easily marshalled into JSON.
+
 # Wiki
 * [Interfacing with Android and IOS](https://github.com/hemantasapkota/goma/wiki/Interfacing-with-Android-and-IOS)
 
@@ -132,26 +149,14 @@ Goma is being used in production for the following apps.
 * **OpenLearning IOS** - https://itunes.apple.com/us/app/openlearning/id981790180?ls=1&mt=8
 * **OpenLearning Android** - https://play.google.com/store/apps/details?id=openlearning.com.openlearning
 
-# License
+## Contribute
 
-The MIT License (MIT)
+We would love for you to contribute to **Goma**, check the ``LICENSE`` file for more info.
 
-Copyright (c) 2016 Hemanta Sapkota
+## Meta
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Hemanta Sapkota – [@ozhemanta](https://twitter.com/ozhemanta) – laex.pearl@gmail.com
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Distributed under the MIT license. See ``LICENSE`` for more information.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+[https://github.com/hemantasapkota](https://github.com/hemantasapkota/)
