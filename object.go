@@ -3,7 +3,7 @@ package goma
 import (
 	"encoding/json"
 	"fmt"
-	"goma/gomadb"
+	"github.com/hemantasapkota/goma/gomadb"
 	"log"
 )
 
