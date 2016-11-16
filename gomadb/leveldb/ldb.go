@@ -35,6 +35,24 @@ func InitDB(path string) (*GomaDB, error) {
 	return DB, nil
 }
 
+func RecoverDB(path string) (*GomaDB, error) {
+	// If DB has been inited, return
+	if DB != nil {
+		return DB, nil
+	}
+
+	filepath := fmt.Sprintf("%s/goma.db", path)
+	db, err := leveldb.RecoverFile(filepath, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	DB = &GomaDB{
+		Store: db,
+	}
+	return DB, nil
+}
+
 func RemoveDir(dir string) error {
 	d, err := os.Open(dir)
 	if err != nil {
