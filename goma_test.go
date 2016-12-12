@@ -44,6 +44,15 @@ func TestObjects(t *testing.T) {
 	if w1.Age != 29 {
 		t.Error("Error saving/restore DBObject: Age")
 	}
+
+	// Test deletion
+	w1.Delete(w1)
+
+	w1 = &TestObject{}
+	err = w1.Restore(w1)
+	if err == nil {
+		t.Error("After deleting an obect, it shouldn't exist")
+	}
 }
 
 func TestCache(t *testing.T) {

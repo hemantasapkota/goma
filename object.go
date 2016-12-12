@@ -14,6 +14,11 @@ type DBObject interface {
 type Object struct {
 }
 
+func (obj *Object) Delete(dbObj DBObject) error {
+	Log(fmt.Sprintf("Deleting: %s", dbObj.Key()))
+	return gomadb.GetDB().Delete(dbObj.Key())
+}
+
 func (obj *Object) Save(dbObj DBObject) error {
 	data, err := json.Marshal(dbObj)
 	if err != nil {
