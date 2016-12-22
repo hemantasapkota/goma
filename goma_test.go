@@ -12,7 +12,7 @@ type TestObject struct {
 	Age  int    `json:"age"`
 }
 
-func (o TestObject) Key() string {
+func (o *TestObject) Key() string {
 	return "goma.testObject"
 }
 
@@ -25,7 +25,7 @@ func TestObjects(t *testing.T) {
 	}
 	gomadb.SetLevelDB(db)
 
-	w := TestObject{
+	w := &TestObject{
 		Name: "Hemanta",
 		Age:  29,
 	}
