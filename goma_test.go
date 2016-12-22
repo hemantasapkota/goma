@@ -3,6 +3,8 @@ package goma
 import (
 	gomadb "github.com/hemantasapkota/goma/gomadb"
 	ldb "github.com/hemantasapkota/goma/gomadb/leveldb"
+
+	"sync"
 	"testing"
 )
 
@@ -98,4 +100,39 @@ func TestTimestamps(t *testing.T) {
 	if ts1 != timestamp {
 		t.Error("Timestamps should match: ", timestamp, ts1)
 	}
+}
+
+func TestConcurrentSave(t *testing.T) {
+
+	w := &TestObject{
+		Name: "Hemanta",
+		Age:  29,
+	}
+
+	t.Log(w.Save(w))
+
+	var wg sync.WaitGroup
+
+	wg.Add(3)
+
+	go func() {
+		w.Name = "Fitmanta"
+		w.Save(w)
+		wg.Done()
+	}()
+
+	go func() {
+		w.Name = "Yomanta"
+		w.Save(w)
+		wg.Done()
+	}()
+
+	go func() {
+		w.Name = "Romanta"
+		w.Save(w)
+		wg.Done()
+	}()
+
+	wg.Wait()
+
 }
