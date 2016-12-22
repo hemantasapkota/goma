@@ -33,7 +33,7 @@ type Person struct {
 }
 
 // Implement goma.DBObject interface's Key() method
-func (p Person) Key() string {
+func (p *Person) Key() string {
   return "sampleApp.Person"
 }
 ```
@@ -107,7 +107,7 @@ type Container struct {
     Children []ContainerItem `json:"children"`
 }
 
-func (c Container) Key() string {
+func (c *Container) Key() string {
     return "sampleApp.Container"
 }
 
