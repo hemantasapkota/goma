@@ -70,6 +70,7 @@ if err != nil {
  // do something
 }
 ```
+**Note**: For consistency purpose, it's recommended that GOMA object recivers be of pointer type. See this [blog](https://nathanleclaire.com/blog/2014/08/09/dont-get-bitten-by-pointer-vs-non-pointer-method-receivers-in-golang/) post for more details.
 
 ## goma.AppCache - In-memory cache for your objects ##
 
@@ -122,10 +123,6 @@ container := goma.GetAppCache().Get(EmptyContainer()).(*Container)
 // If the object does not exist in the cache, the method returns the object returned by EmptyContainer()
 
 ```
-
-## App Structure ( TODO )
-
-The following structure is reccomended:
 
 ## Marshaling - Return values from Goma ##
 
