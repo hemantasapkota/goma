@@ -72,6 +72,12 @@ func TestCache(t *testing.T) {
 	if w1.Name != "Hemanta" {
 		t.Error("Object retireved from the cache does not match that one that was put in")
 	}
+
+	cache.Delete(w1)
+
+	if len(cache.Objects) != 0 {
+		t.Log("After deletion, cache should have been empty")
+	}
 }
 
 func TestTimestamps(t *testing.T) {

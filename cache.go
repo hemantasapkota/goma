@@ -33,3 +33,7 @@ func (c *AppCache) Get(obj DBObject) DBObject {
 	}
 	return obj
 }
+
+func (c *AppCache) Delete(object DBObject) {
+	delete(c.Objects, object.Key())
+}
