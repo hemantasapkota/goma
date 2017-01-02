@@ -34,6 +34,12 @@ func TestObjects(t *testing.T) {
 
 	w.Save(w)
 
+	// Test raw
+	rawData, _ := w.Raw(w)
+	if string(rawData) != `{"name":"Hemanta","age":29}` {
+		t.Error("Raw data does not match correct JSON")
+	}
+
 	w1 := &TestObject{}
 	w1.Restore(w1)
 

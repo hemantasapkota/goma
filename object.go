@@ -41,3 +41,7 @@ func (obj *Object) Restore(dbObj DBObject) error {
 	}
 	return nil
 }
+
+func (obj *Object) Raw(dbObj DBObject) ([]byte, error) {
+	return gomadb.GetDB().GetBytes(dbObj.Key())
+}
