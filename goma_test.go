@@ -86,6 +86,36 @@ func TestCache(t *testing.T) {
 	}
 }
 
+func TestCacheSync(t *testing.T) {
+	cache := GetAppCache()
+
+	w := &TestObject{
+		Name: "Fitmanta",
+		Age:  29,
+	}
+
+	var wg sync.WaitGroup
+	wg.Add(3)
+	go func() {
+		defer wg.Done()
+		w.Name = "Strictmanta"
+		cache.Put(w)
+	}()
+	go func() {
+		defer wg.Done()
+		w.Name = "Litmanta"
+		cache.Put(w)
+	}()
+	go func() {
+		defer wg.Done()
+	}()
+	wg.Wait()
+
+	w1 := cache.Get(&TestObject{}).(*TestObject)
+	t.Log(w1)
+
+}
+
 func TestTimestamps(t *testing.T) {
 	ts := Timestamp()
 	if ts == "" {
