@@ -36,7 +36,7 @@ func (c *AppCache) Get(obj DBObject) DBObject {
 }
 
 func (c *AppCache) Delete(object DBObject) {
-	// c.Lock()
-	// defer c.Unlock()
+	c.Lock()
+	defer c.Unlock()
 	delete(c.Objects, object.Key())
 }
