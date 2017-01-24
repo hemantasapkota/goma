@@ -8,6 +8,30 @@ import (
 	"testing"
 )
 
+// Container Object
+type ContainerItem struct {
+	Id int `json:"id"`
+}
+
+type Container struct {
+	*Object
+	sync.Mutex
+
+	Children []ContainerItem
+}
+
+func (c *Container) Key() string {
+	return "goma.container"
+}
+
+func (c *Container) AddChild(child ContainerItem) {
+	c.Lock()
+	defer c.Unlock()
+
+	c.Children = append(c.Children, child)
+}
+
+// Test Object
 type TestObject struct {
 	*Object
 	sync.Mutex
@@ -197,5 +221,30 @@ func TestConcurrentSave(t *testing.T) {
 	}()
 
 	wg.Wait()
+
+}
+
+func TestContainerObjectSync(t *testing.T) {
+	container := &Container{}
+
+	var wg sync.WaitGroup
+
+	wg.Add(2)
+
+	go func() {
+		defer wg.Done()
+
+		container.AddChild(ContainerItem{Id: 1})
+	}()
+
+	go func() {
+		defer wg.Done()
+
+		container.AddChild(ContainerItem{Id: 2})
+	}()
+
+	wg.Wait()
+
+	container.Save(container)
 
 }
