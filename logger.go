@@ -17,7 +17,6 @@ var loggerConfig LoggerConfig
 func NewLogger(conf LoggerConfig) *log.Logger {
 	loggerConfig = conf
 	info = log.New(os.Stdout, "GOMA: ", log.Lshortfile)
-	info.Println("Logger inited.")
 	return info
 }
 
