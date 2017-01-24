@@ -10,6 +10,8 @@ import (
 
 type TestObject struct {
 	*Object
+	sync.Mutex
+
 	Name string `json:"name"`
 	Age  int    `json:"age"`
 }
@@ -95,24 +97,34 @@ func TestCacheSync(t *testing.T) {
 	}
 
 	var wg sync.WaitGroup
-	wg.Add(3)
+	wg.Add(2)
 	go func() {
+		w.Lock()
+		defer w.Unlock()
 		defer wg.Done()
+
 		w.Name = "Strictmanta"
+
 		cache.Put(w)
 	}()
 	go func() {
+		w.Lock()
+		defer w.Unlock()
 		defer wg.Done()
+
 		w.Name = "Litmanta"
+
 		cache.Put(w)
-	}()
-	go func() {
-		defer wg.Done()
 	}()
 	wg.Wait()
 
 	w1 := cache.Get(&TestObject{}).(*TestObject)
-	t.Log(w1)
+
+	if w1.Name != "Litmanta" {
+		t.Log("Sync didn't work.")
+	}
+
+	// t.Log(w1)
 
 }
 
@@ -158,21 +170,30 @@ func TestConcurrentSave(t *testing.T) {
 	wg.Add(3)
 
 	go func() {
+		w.Lock()
+		defer w.Unlock()
+		defer wg.Done()
+
 		w.Name = "Fitmanta"
 		w.Save(w)
-		wg.Done()
 	}()
 
 	go func() {
+		w.Lock()
+		defer w.Unlock()
+		defer wg.Done()
+
 		w.Name = "Yomanta"
 		w.Save(w)
-		wg.Done()
 	}()
 
 	go func() {
+		w.Lock()
+		defer w.Unlock()
+		defer wg.Done()
+
 		w.Name = "Romanta"
 		w.Save(w)
-		wg.Done()
 	}()
 
 	wg.Wait()
