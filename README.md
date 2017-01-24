@@ -130,6 +130,34 @@ container := goma.GetAppCache().Get(EmptyContainer()).(*Container)
 
 Goma leverages Go's excellent JSON support. Complex types like structs, arrays, and maps can be easily marshalled into JSON.
 
+## Synchronization of Objects ##
+
+Use mutexes to sycnhronize read/write access to the objects.
+
+```go
+type ContainerItem struct {
+	Id int `json:"id"`
+}
+
+type Container struct {
+	*Object
+	sync.Mutex
+
+	Children []ContainerItem
+}
+
+func (c *Container) Key() string {
+	return "goma.container"
+}
+
+func (c *Container) AddChild(child ContainerItem) {
+	c.Lock()
+	defer c.Unlock()
+
+	c.Children = append(c.Children, child)
+}
+```
+
 # Wiki
 * [Interfacing with Android and IOS](https://github.com/hemantasapkota/goma/wiki/Interfacing-with-Android-and-IOS)
 
