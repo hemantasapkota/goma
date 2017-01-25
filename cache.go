@@ -5,7 +5,7 @@ import (
 )
 
 type AppCache struct {
-	sync.RWMutex
+	sync.Mutex
 	Objects map[string]DBObject
 }
 
@@ -28,9 +28,6 @@ func (c *AppCache) Put(obj DBObject) *AppCache {
 }
 
 func (c *AppCache) Get(obj DBObject) DBObject {
-	c.RLock()
-	defer c.RUnlock()
-
 	o := c.Objects[obj.Key()]
 	if o != nil {
 		return o
