@@ -28,6 +28,9 @@ func (c *AppCache) Put(obj DBObject) *AppCache {
 }
 
 func (c *AppCache) Get(obj DBObject) DBObject {
+	c.Lock()
+	defer c.Unlock()
+
 	o := c.Objects[obj.Key()]
 	if o != nil {
 		return o
