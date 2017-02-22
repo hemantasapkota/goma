@@ -102,7 +102,10 @@ func (db *GomaDB) Get(key string) (string, error) {
 	defer db.Unlock()
 
 	value, err := db.Store.Get([]byte(key), nil)
-	return string(value), errors.New(fmt.Sprintf("Key: %v, Error: %v", key, err))
+	if err != nil {
+		err = errors.New(fmt.Sprintf("Key: %v, Error: %v", key, err))
+	}
+	return string(value), err
 }
 func (db *GomaDB) GetBytes(key string) ([]byte, error) {
 	db.Lock()
