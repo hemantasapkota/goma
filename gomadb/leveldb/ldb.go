@@ -3,6 +3,7 @@ package leveldb
 import (
 	"github.com/syndtr/goleveldb/leveldb"
 
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -101,7 +102,7 @@ func (db *GomaDB) Get(key string) (string, error) {
 	defer db.Unlock()
 
 	value, err := db.Store.Get([]byte(key), nil)
-	return string(value), err
+	return string(value), errors.New(fmt.Sprintf("Key: %v, Error: %v", key, err))
 }
 func (db *GomaDB) GetBytes(key string) ([]byte, error) {
 	db.Lock()
