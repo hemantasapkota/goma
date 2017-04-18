@@ -132,7 +132,7 @@ Goma leverages Go's excellent JSON support. Complex types like structs, arrays, 
 
 ## Synchronization of Objects ##
 
-Use mutexes to sycnhronize read/write access to the objects.
+Synchronization is required to ensure that multiple goroutine don't modify the same object at the same time. Using mutexes to sycnhronize read/write access to the objects can solve this problem.
 
 ```go
 type ContainerItem struct {
