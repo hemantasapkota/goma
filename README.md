@@ -70,7 +70,7 @@ if err != nil {
  // do something
 }
 ```
-**Note**: For consistency purpose, it's recommended that GOMA object recivers be of pointer type. See this [blog](https://nathanleclaire.com/blog/2014/08/09/dont-get-bitten-by-pointer-vs-non-pointer-method-receivers-in-golang/) post for more details.
+**Note**: For consistency purpose, it's recommended that GOMA object receivers be of pointer type. See this [blog](https://nathanleclaire.com/blog/2014/08/09/dont-get-bitten-by-pointer-vs-non-pointer-method-receivers-in-golang/) post for more details.
 
 ## goma.AppCache - In-memory cache for your objects ##
 
@@ -132,7 +132,7 @@ Goma leverages Go's excellent JSON support. Complex types like structs, arrays, 
 
 ## Synchronization of Objects ##
 
-Synchronization is required to ensure that multiple goroutine don't modify the same object at the same time. Using mutexes to sycnhronize read/write access to the objects can solve this problem.
+Synchronization is required to ensure multiple goroutine don't modify the same object at the same time. Using mutexes to sycnhronize read/write access to the objects can solve this problem.
 
 ```go
 type ContainerItem struct {
