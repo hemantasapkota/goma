@@ -89,69 +89,6 @@ func TestObjects(t *testing.T) {
 	}
 }
 
-func TestCache(t *testing.T) {
-	cache := GetAppCache()
-
-	w := &TestObject{
-		Name: "Hemanta",
-		Age:  29,
-	}
-	cache.Put(w)
-
-	w1 := &TestObject{}
-	w1 = cache.Get(w1).(*TestObject)
-
-	if w1.Name != "Hemanta" {
-		t.Error("Object retireved from the cache does not match that one that was put in")
-	}
-
-	cache.Delete(w1)
-
-	if len(cache.Objects) != 0 {
-		t.Log("After deletion, cache should have been empty")
-	}
-}
-
-func TestCacheSync(t *testing.T) {
-	cache := GetAppCache()
-
-	w := &TestObject{
-		Name: "Fitmanta",
-		Age:  29,
-	}
-
-	var wg sync.WaitGroup
-	wg.Add(2)
-	go func() {
-		w.Lock()
-		defer w.Unlock()
-		defer wg.Done()
-
-		w.Name = "Strictmanta"
-
-		cache.Put(w)
-	}()
-	go func() {
-		w.Lock()
-		defer w.Unlock()
-		defer wg.Done()
-
-		w.Name = "Litmanta"
-
-		cache.Put(w)
-	}()
-	wg.Wait()
-
-	w1 := cache.Get(&TestObject{}).(*TestObject)
-
-	if w1.Name != "Litmanta" {
-		t.Log("Sync didn't work.")
-	}
-
-	// t.Log(w1)
-
-}
-
 func TestTimestamps(t *testing.T) {
 	ts := Timestamp()
 	if ts == "" {

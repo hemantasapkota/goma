@@ -72,58 +72,6 @@ if err != nil {
 ```
 **Note**: For consistency purpose, it's recommended that GOMA object recivers be of pointer type. See this [blog](https://nathanleclaire.com/blog/2014/08/09/dont-get-bitten-by-pointer-vs-non-pointer-method-receivers-in-golang/) post for more details.
 
-## goma.AppCache - In-memory cache for your objects ##
-
-Saving and restoring objects are expensive functions, so they must be minimized. Goma comes with an in-memory cache which can be used for storing objects throughout the session of the app.
-
-### Put to cache ###
-```go
-person := &Person{
- Name: "Panda panda",
- Age: 35,
-}
-goma.GetAppCache().Put(person)
-```
-
-### Get from cache ###
-```go
-p := goma.GetAppCache().Get(&Person{}).(*Person)
-
-// Do something with p
-```
-
-The **Get** method expects an empty struct for the type you're querying for. This struct should also implement [goma.DBObject](object.go) interface.  If the queried object does not exists, **Get** returns the same empty type that was passed in. 
-
-Since **Get** is likely to be called from multiple places in the codebase, this design helps avoid making nil error checks ( `if obj != nil` ) on the returned object. If there's a better design for this, feel free to submit a pull request.
-
-Here's an another example:
-
-```go
-type ContainerItem struct {
-    Id int `json:"id"`
-}
-
-type Container struct {
-    *goma.Object
-    Children []ContainerItem `json:"children"`
-}
-
-func (c *Container) Key() string {
-    return "sampleApp.Container"
-}
-
-func EmptyConatiner() *Container {
-    return &Container{
-        Childred: make([]ContainerItem, 0),
-    }
-}
-
-container := goma.GetAppCache().Get(EmptyContainer()).(*Container)
-
-// If the object does not exist in the cache, the method returns the object returned by EmptyContainer()
-
-```
-
 ## Marshaling - Return values from Goma ##
 
 [gomobile](https://godoc.org/golang.org/x/mobile/cmd/gomobile) has some restrictions as to what types you can return. They are primitives ( ```int, int64, float float64, string, and bool``` ) and ( byte array ) ```[]byte```. 
