@@ -21,12 +21,7 @@ func NewLogger(conf LoggerConfig) *log.Logger {
 }
 
 func Log(message interface{}) {
-	if info == nil {
-		log.Println("Warning: Logger has not been inited. Please call NewLogger()")
-		return
-	}
-
-	if !loggerConfig.Debug {
+	if info == nil || !loggerConfig.Debug {
 		return
 	}
 
