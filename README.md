@@ -115,20 +115,13 @@ func (c *Container) AddChild(child ContainerItem) {
 
 See https://github.com/hemantasapkota/goma-examples
 
-# Production Apps
-
-Goma is being used in production for the following apps.
-
-* **OpenLearning IOS** - https://itunes.apple.com/us/app/openlearning/id981790180?ls=1&mt=8
-* **OpenLearning Android** - https://play.google.com/store/apps/details?id=openlearning.com.openlearning
-
 ## Contribute
 
 We would love for you to contribute to **Goma**, check the ``LICENSE`` file for more info.
 
 ## Meta
 
-Hemanta Sapkota – [@ozhemanta](https://twitter.com/ozhemanta) – laex.pearl@gmail.com
+Hemanta Sapkota 
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
